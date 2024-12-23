@@ -74,7 +74,7 @@ public class MapGenerator : IIncrementalGenerator
             IsRecord = (symbol as INamedTypeSymbol)?.IsRecord ?? false,
             PropertiesInBoth = removedDuplicatePrpertiesInBoth,
             PropertiesInMapOnly = classProperty.PropertiesInOnlyMap,
-            MappingClassName = mapAttribute.AttributeClass?.TypeArguments[0]?.Name,
+            MappingClassName = mapAttribute.AttributeClass?.TypeArguments[0]?.ToDisplayString(),
             Properties = propertiesDefinedInThisCLass,
             DuplicateProperties = duplicatePrpertiesInBoth
         };
