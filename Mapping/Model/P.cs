@@ -8,6 +8,7 @@ public record B
     public int C { get; set; }
     public string D { get; set; }
     public int F { get; set; }
+    public int G { get; set; }
     public required List<D> Items { get; set; }
 };
 
@@ -28,6 +29,7 @@ public partial record A
 [Map<B>]
 public partial record K
 {
+    public int G { get; set; }
     public K()
     {
         Transform = (k, b) =>

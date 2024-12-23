@@ -10,7 +10,7 @@ var mapper = services.GetRequiredService<IMapper<A, B>>();
 var mapper2 = services.GetRequiredService<IMapper<K, B>>();
 
 var a = new A { D = "Hello" };
-var b = new B { D = "World", C = 1, F = 5, Items = [] };
+var b = new B { D = "World", C = 1, F = 5, Items = [], G = 4 };
 
 var b2 = mapper.Map(a);
 var a2 = mapper.Map(b);

@@ -43,6 +43,28 @@ public class MapGenerator : IIncrementalGenerator
         if (mapAttribute == null) return null;
 
         var classProperty = GetPropertiesFromAttributes(mapAttribute);
+        var propertiesDefinedInThisCLass = (symbol as INamedTypeSymbol)
+            ?.GetMembers()
+            .Where(x => !x.IsVirtual)
+            ?.OfType<IPropertySymbol>()
+            ?.Select(static x => new Item
+            {
+                IsRequired = x.IsRequired,
+                Name = x.Name,
+                Type = x.Type.ToDisplayString()
+            })?.ToEquatableList() ?? [];
+
+        var propertiesDefinedInThisCLassNames = propertiesDefinedInThisCLass.Select(x => x.Name).ToList();
+
+        var removedDuplicatePrpertiesInBoth = classProperty
+            .PropertiesInBoth
+            ?.Where(x => !propertiesDefinedInThisCLassNames.Contains(x.Name))
+            ?.ToEquatableList() ?? [];
+
+        var duplicatePrpertiesInBoth = classProperty
+            .PropertiesInBoth
+            ?.Where(x => propertiesDefinedInThisCLassNames.Contains(x.Name))
+            ?.ToEquatableList() ?? [];
 
         var mappingItem = new MappingItem
         {
@@ -50,10 +72,11 @@ public class MapGenerator : IIncrementalGenerator
             ? null : symbol.ContainingNamespace.ToDisplayString(),
             ClassName = symbol.Name,
             IsRecord = (symbol as INamedTypeSymbol)?.IsRecord ?? false,
-            PropertiesInBoth = classProperty.PropertiesInBoth,
+            PropertiesInBoth = removedDuplicatePrpertiesInBoth,
             PropertiesInMapOnly = classProperty.PropertiesInOnlyMap,
-            MappingClassName = mapAttribute.AttributeClass?.TypeArguments[0]?.Name
-
+            MappingClassName = mapAttribute.AttributeClass?.TypeArguments[0]?.Name,
+            Properties = propertiesDefinedInThisCLass,
+            DuplicateProperties = duplicatePrpertiesInBoth
         };
 
         return mappingItem;

@@ -20,4 +20,6 @@ public record MappingItem
     public bool IsRecord { get; set; }
     public EquatableList<Item> PropertiesInBoth { get; set; } = [];
     public EquatableList<Item> PropertiesInMapOnly { get; set; } = [];
+    public EquatableList<Item> Properties { get; set; } = [];
+    public EquatableList<Item> DuplicateProperties { get; set; } = [];
 }
