@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35521.163 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mmeko", "Mmeko\Mmeko.csproj", "{F7C0C5EC-1C16-4426-85BD-F250BA07942D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{16C0EAEB-062F-4396-AC99-F5DA9F3A4800}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "example", "example", "{AC2B3657-09E6-4AAA-9B2E-4B68BC8C1C51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mapping", "Mapping\Mapping.csproj", "{C99ECAC8-107C-4537-8B2C-72296A5631DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F7C0C5EC-1C16-4426-85BD-F250BA07942D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7C0C5EC-1C16-4426-85BD-F250BA07942D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7C0C5EC-1C16-4426-85BD-F250BA07942D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7C0C5EC-1C16-4426-85BD-F250BA07942D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C99ECAC8-107C-4537-8B2C-72296A5631DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C99ECAC8-107C-4537-8B2C-72296A5631DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C99ECAC8-107C-4537-8B2C-72296A5631DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C99ECAC8-107C-4537-8B2C-72296A5631DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F7C0C5EC-1C16-4426-85BD-F250BA07942D} = {16C0EAEB-062F-4396-AC99-F5DA9F3A4800}
+		{C99ECAC8-107C-4537-8B2C-72296A5631DC} = {AC2B3657-09E6-4AAA-9B2E-4B68BC8C1C51}
+	EndGlobalSection
+EndGlobal
