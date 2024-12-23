@@ -20,22 +20,26 @@ public static class MappedPartialClassGenerator
                 // create all properties
                 {{DefineClassProperties(mappingItem.PropertiesInBoth)}}
                 // define the default transform property
-                private Action<{{mappingItem.ClassName}}, {{mappingItem.MappingClassName}}> Transform { get; set; } = (_, _) => { };
+                private Action<{{mappingItem.MappingClassName}}> Transform { get; set; } = (_) => { };
+
+                // define the default transform back property
+                private Func<{{mappingItem.MappingClassName}}, {{mappingItem.MappingClassName}}> TransformBack { get; set; } = (value) => value;
 
                 // implement the interfaces
                 public {{mappingItem.ClassName}} ToSelf({{mappingItem.MappingClassName}} @in)
                 {
                     {{DoPropertyAssignment(mappingItem)}}
-                    Transform(this, @in);
+                    Transform(@in);
                     return this;
                 }
 
                 public {{mappingItem.MappingClassName}} ToIn()
                 {
-                    return new {{mappingItem.MappingClassName}}
+                    var result = new {{mappingItem.MappingClassName}}
                     {
                         {{DoMappingPropertyAssignment(mappingItem)}}
                     };
+                    return TransformBack(result);
                 }
             }
             """);

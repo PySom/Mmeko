@@ -18,9 +18,9 @@ public partial record A
 {
     public A()
     {
-        Transform = (a, b) =>
+        Transform = (b) =>
         {
-            a.C = b.C * 5;
+            C = b.C * 5;
         };
     }
 }
@@ -32,11 +32,17 @@ public partial record K
     public string G { get; set; }
     public K()
     {
-        Transform = (k, b) =>
+        Transform = (b) =>
         {
-            k.C = b.C + 10;
-            k.D = $"{b.D} Hello";
-            k.F = k.C + b.F;
+            C = b.C + 10;
+            D = $"{b.D} Hello";
+            F = b.C + F;
+        };
+
+        TransformBack = (b) =>
+        {
+            b.C = C * 1000;
+            return b;
         };
     }
 }
