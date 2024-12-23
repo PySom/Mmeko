@@ -26,10 +26,10 @@ public partial record A
 }
 
 [Mapper]
-[Map<B>]
+[Map<B>(Exclude = [nameof(B.G)])]
 public partial record K
 {
-    public int G { get; set; }
+    public string G { get; set; }
     public K()
     {
         Transform = (k, b) =>

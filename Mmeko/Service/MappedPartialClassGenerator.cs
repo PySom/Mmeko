@@ -76,8 +76,8 @@ public static class MappedPartialClassGenerator
         }
         foreach (var property in mappingItem.PropertiesInMapOnly)
         {
-            var propertiesInClass = mappingItem.Properties.Select(x => x.Name).ToList();
-            var assignment = propertiesInClass.Contains(property.Name) ? $"this.{property.Name}" : "default";
+            var thereIsMappingInClassProperties = mappingItem.Properties.Any(x => x.Name == property.Name && x.Type == property.Type);
+            var assignment = thereIsMappingInClassProperties ? $"this.{property.Name}" : "default";
             genCode.Append($$"""
             {{property.Name}} = {{assignment}},
             """);
@@ -101,11 +101,9 @@ public static class MappedPartialClassGenerator
         // Assign class properties
         foreach (var property in item.Properties)
         {
-            var propertiesInMappingClass = item.PropertiesInMapOnly.Select(x => x.Name).ToList();
-            var propertiesInDuplicate = item.DuplicateProperties.Select(x => x.Name).ToList();
-            var assignment = (propertiesInMappingClass.Contains(property.Name) || propertiesInDuplicate.Contains(property.Name)) 
-                ? $"@in.{property.Name}" 
-                : "default";
+            var thereIsMappingInMapClass = item.PropertiesInMapOnly.Any(x => x.Name == property.Name && x.Type == property.Type);
+            var thereIsMappingInDuplicate = item.DuplicateProperties.Any(x => x.Name == property.Name && x.Type == property.Type);
+            var assignment = thereIsMappingInMapClass || thereIsMappingInDuplicate ? $"@in.{property.Name}" : "default";
             genCode.Append($$"""
             {{property.Name}} = {{assignment}};
             """);

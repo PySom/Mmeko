@@ -58,12 +58,12 @@ public class MapGenerator : IIncrementalGenerator
 
         var removedDuplicatePrpertiesInBoth = classProperty
             .PropertiesInBoth
-            ?.Where(x => !propertiesDefinedInThisCLassNames.Contains(x.Name))
+            ?.Where(x => !propertiesDefinedInThisCLass.Any(y => y.Name == x.Name && y.Type == x.Type))
             ?.ToEquatableList() ?? [];
 
         var duplicatePrpertiesInBoth = classProperty
             .PropertiesInBoth
-            ?.Where(x => propertiesDefinedInThisCLassNames.Contains(x.Name))
+            ?.Where(x => propertiesDefinedInThisCLass.Any(y => y.Name == x.Name && y.Type == x.Type))
             ?.ToEquatableList() ?? [];
 
         var mappingItem = new MappingItem
