@@ -6,10 +6,10 @@ public static class MapperInfrastructure
         {{AttributeGeneratorHelper.GeneratedHeaderComment}}
         using Mmeko.Models.Infrastructure;
         namespace Mmeko.Infrastructure;
-        public interface IMapper<TSelf, TIn> where TSelf : IMap<TSelf, TIn>, new()
+        public interface IMapper
         {
-            TSelf Map(TIn value);
-            TIn Map(TSelf self);
+            TSelf Map<TSelf, TIn>(TIn value) where TSelf : IMap<TSelf, TIn>, new();
+            TIn Map<TSelf, TIn>(TSelf self) where TSelf : IMap<TSelf, TIn>, new();
         }
         """;
 }

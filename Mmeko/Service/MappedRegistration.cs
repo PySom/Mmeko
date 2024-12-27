@@ -13,19 +13,19 @@ public static class MappedRegistration
         {
             public static IServiceCollection AddTransientMmekoMappings(this IServiceCollection services)
             {
-                services.AddTransient(typeof(IMapper<,>), typeof(Mapper<,>));
+                services.AddTransient<IMapper, Mapper>();
                 return services;
             }
 
             public static IServiceCollection AddScopedMmekoMappings(this IServiceCollection services)
             {
-                services.AddScoped(typeof(IMapper<,>), typeof(Mapper<,>));
+                services.AddScoped<IMapper, Mapper>();
                 return services;
             }
             
             public static IServiceCollection AddSingletonMmekoMappings(this IServiceCollection services)
             {
-                services.AddSingleton(typeof(IMapper<,>), typeof(Mapper<,>));
+                services.AddSingleton<IMapper, Mapper>();
                 return services;
             }
         }

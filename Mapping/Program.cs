@@ -6,17 +6,16 @@ using Mmeko.Service;
 
 var services = ConfigureServices();
 
-var mapper = services.GetRequiredService<IMapper<A, B>>();
-var mapper2 = services.GetRequiredService<IMapper<K, B>>();
+var mapper = services.GetRequiredService<IMapper>();
 
 var a = new A { D = "Hello" };
 var b = new B { D = "World", C = 1, F = 5, Items = [], G = 4 };
 
-var b2 = mapper.Map(a);
-var a2 = mapper.Map(b);
+var b2 = mapper.Map<A, B>(a);
+var a2 = mapper.Map<A, B>(b);
 
-var k = mapper2.Map(b);
-var b3 = mapper2.Map(k);
+var k = mapper.Map<K, B>(b);
+var b3 = mapper.Map<K, B>(k);
 
 Console.WriteLine(b2);
 Console.WriteLine(a2);
